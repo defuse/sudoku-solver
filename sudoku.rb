@@ -1,13 +1,30 @@
-require 'pp'
+# This program solves Sudoku puzzles.
 
+# Change 'PUZZLE' to be the puzzle you want it to solve.
+# Put '0' in the empty cells.
+
+PUZZLE = [
+  [0, 4, 6, 0, 0, 1, 0, 0, 0],
+  [0, 0, 0, 0, 2, 0, 0, 8, 9],
+  [1, 9, 0, 8, 0, 0, 5, 0, 0],
+  [0, 0, 0, 0, 0, 7, 0, 0, 0],
+  [0, 5, 7, 0, 1, 0, 6, 2, 0],
+  [0, 0, 0, 9, 0, 0, 0, 0, 0],
+  [0, 0, 4, 0, 0, 2, 0, 3, 6],
+  [6, 1, 0, 0, 5, 0, 0, 0, 0],
+  [0, 0, 0, 3, 0, 0, 7, 5, 0]
+]
+
+# ----------------------------------------------------------------------------
+
+# Each Sudoku cell can take on any value in 1 through 9.
 POSSIBLE_VALUES = [1,2,3,4,5,6,7,8,9]
-BOARD_SIZE = POSSIBLE_VALUES.size
+# A Sudoku puzzle is a 9x9 grid.
+BOARD_SIZE = 9
 
-# Represents a set of nine squares that must satisfy the "sudoku constraint"
-# The sudoku constraint is:
-#   The set must consist of nine squares and for each value in 1,2,3,4,5,6,7,8,9
-#   exactly one of the squares has that value, and no square has any other
-#   value.
+# In Sudoku, each cell is a member of three "Constraints." A Constraint is
+# a group of 9 cells in which every number from 1 to 9 occurs exactly once. An
+# instance of this class represents one such constraint.
 class Constraint
 
   def initialize(squares)
@@ -29,7 +46,7 @@ class Constraint
 
 end
 
-# Represents one square in the sudoku grid.
+# Represents one cell in the Sudoku puzzle.
 class Square
 
   def initialize(value)
@@ -226,43 +243,7 @@ class Sudoku
 
 end
 
-puzzle = [
-  [0, 0, 0, 1, 0, 0, 7, 0, 0],
-  [0, 0, 2, 6, 0, 3, 0, 5, 0],
-  [0, 5, 0, 4, 0, 0, 2, 0, 8],
-  [4, 2, 5, 3, 0, 0, 0, 8, 0],
-  [0, 0, 0, 0, 9, 0, 0, 0, 0],
-  [0, 8, 0, 0, 0, 4, 5, 1, 3],
-  [1, 0, 4, 0, 0, 6, 0, 7, 0],
-  [0, 7, 0, 9, 0, 2, 6, 0, 0],
-  [0, 0, 3, 0, 0, 1, 0, 0, 0]
-]
-
-puzzle = [
-  [0, 4, 6, 0, 0, 1, 0, 0, 0],
-  [0, 0, 0, 0, 2, 0, 0, 8, 9],
-  [1, 9, 0, 8, 0, 0, 5, 0, 0],
-  [0, 0, 0, 0, 0, 7, 0, 0, 0],
-  [0, 5, 7, 0, 1, 0, 6, 2, 0],
-  [0, 0, 0, 9, 0, 0, 0, 0, 0],
-  [0, 0, 4, 0, 0, 2, 0, 3, 6],
-  [6, 1, 0, 0, 5, 0, 0, 0, 0],
-  [0, 0, 0, 3, 0, 0, 7, 5, 0]
-]
-
-# puzzle = [
-#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-# ]
-# 
-game = Sudoku.new(puzzle)
+game = Sudoku.new(PUZZLE)
 game.solve
 if game.solved?
   game.printGame
