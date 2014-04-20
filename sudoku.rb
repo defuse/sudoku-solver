@@ -238,24 +238,27 @@ class Sudoku
   # Otherwise, returns false, and resets the board to how it was before it was
   # called.
 
-  # Tries to solve the puzzle.
+  # Tries to solve the puzzle. The puzzle must not be in an inconsistent state.
   # If the puzzle can be solved, it leaves it that way and returns true.
   # If the puzzle couldn't be solved, it reverts it back to the way it was and
   # returns false.
   def solve
+
+    # If the puzzle is solved, we're done.
     if solved?
       return true
     end
 
-    # Select the first unknown cell.
+    # If not, select the next empty cell.
     unknown = unsolvedCells.first
 
+    # If it has no possible values, the puzzle is inconsistent. 
     if unknown.possibleValues.empty?
-      # Inconsistent, return false.
+      # We made a mistake and have to backtrack.
       return false
     end
 
-    # Try every possible value
+    # Try every possible value.
     unknown.possibleValues.shuffle.each do |value|
       unknown.value = value
       if solve() == true
@@ -264,6 +267,10 @@ class Sudoku
         unknown.value = 0
       end
     end
+
+    # If none of the possible values worked, we made a mistake even further back
+    # and have to backtrack more.
+    return false
   end
 
   def unsolvedCells
