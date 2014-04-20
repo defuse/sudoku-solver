@@ -189,6 +189,7 @@ class Sudoku
       end
     end
 
+    # Create the box constraints
     0.upto(2) do |box_row|
       0.upto(2) do |box_col|
         constraint = Constraint.new([])
