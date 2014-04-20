@@ -248,10 +248,6 @@ class Sudoku
     return true
   end
 
-  # Returns true if a solution was found.
-  # Otherwise, returns false, and resets the board to how it was before it was
-  # called.
-
   # Tries to solve the puzzle. The puzzle must not be in an inconsistent state.
   # If the puzzle can be solved, it leaves it that way and returns true.
   # If the puzzle couldn't be solved, it reverts it back to the way it was and
