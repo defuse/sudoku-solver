@@ -3,7 +3,7 @@
 # Change 'PUZZLE' to be the puzzle you want it to solve.
 # Put '0' in the empty cells.
 
-# Super easy puzzle...
+# Super easy puzzle, solved in less than a second.
 PUZZLE = [
   [6, 0, 0, 1, 0, 8, 2, 0, 3],
   [0, 2, 0, 0, 4, 0, 0, 9, 0],
@@ -45,6 +45,19 @@ PUZZLE = [
 # ]
 # # The above puzzle is from:
 # # http://www.sudokuwiki.org/Arto_Inkala_Sudoku
+
+# # Use this to generate a random puzzle.
+# PUZZLE = [
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+# ]
 
 # ----------------------------------------------------------------------------
 
