@@ -189,23 +189,19 @@ class Sudoku
       end
     end
 
-    # Create the box constraints
-    # TODO: make this pretty
-    box_constraints = {}
-    0.upto(BOARD_SIZE - 1) do |row_idx|
-      0.upto(BOARD_SIZE - 1) do |col_idx|
-        crow = row_idx / 3
-        ccol = col_idx / 3
-        constraint = box_constraints[[crow,ccol]]
-        if constraint.nil?
-          constraint = Constraint.new([])
-          box_constraints[[crow,ccol]] = constraint
+    0.upto(2) do |box_row|
+      0.upto(2) do |box_col|
+        constraint = Constraint.new([])
+        @constraints << constraint
+        0.upto(2) do |row_in_box|
+          0.upto(2) do |col_in_box|
+            cell = @board[box_row*3 + row_in_box][box_col*3 + col_in_box]
+            constraint.addCell(cell)
+            cell.addConstraint(constraint)
+          end
         end
-        constraint.addCell(@board[row_idx][col_idx])
-        @board[row_idx][col_idx].addConstraint(constraint)
       end
     end
-    @constraints = @constraints + box_constraints.values
   end
 
   # Returns true if the puzzle has been completely solved.
